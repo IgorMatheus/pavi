@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/cabecalho :: cabecalho">
+	<title>Cadastro de Usuário</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<h2>Cadastro de Novo Usuário</h2>
+		<hr>
+		<form action="#" th:action="@{/salvarUsuario}" th:object="${usuario}" method="POST">
+			<div class="row">
+				<div class="col-12">
+					Nome:<input class="form-control mb-4 col-4" type="text" th:field="*{nome}" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					Login:<input class="form-control mb-4 col-4" type="text" th:field="*{login}" />
+				</div>
+				<div class="col-12">
+					Email:<input class="form-control mb-4 col-4" type="email" th:field="*{email}" />
+				</div>
+				<div class="col-12">
+					Celular:<input class="form-control mb-4 col-4" type="text" th:field="*{celular}" />
+				</div>
+				<div class="col-12">
+					Endereço:<input class="form-control mb-4 col-4" type="text" th:field="*{Endereco}" />
+				</div>								
+			</div>
+			<div class="row">
+				<div class="col-12">
+					Senha:<input class="form-control mb-4 col-4" type="password" th:field="*{senha}" />
+				</div>
+			</div>
+			<button class="btn btn-info col-2" type="submit"> Salvar </button>
+			<a th:href="@{/}" class="btn btn-primary col-2"> Cancelar </a>
+		</form>
+	</div>
+	<br><br>
+	<div th:insert="fragments/rodape :: rodape"></div>
+</body>
+
+</html>

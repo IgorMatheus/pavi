@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/cabecalho :: cabecalho">
+	<title>Login de Usuário</title>
+</head>
+
+<body>
+	<div class="container">
+		<br><br>
+		<div class="card" style="width: 70rem;">
+			<div class="card-header">
+				<center>
+					<p class="login-box-msg">Acesso ao Sistema</p>
+				</center>
+			</div>
+			<form th:action="@{/login}" method="post">
+				<div class="card-body justify-content-center">
+					<div class="row">
+						<div class="col-12">
+							<div class="alert alert-error" th:if="${param.error}">
+								Login ou senha inválido.</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="input-group">
+							Login:&nbsp;&nbsp;&nbsp; <input type="text" class="form-control" id="username" name="username"
+								placeholder="Informe seu login" />
+						</div>
+					</div>
+					<br><br>
+					<div class="col-12">
+						<div class="input-group">
+							Senha:&nbsp; <input type="password" class="form-control" id="password" name="password"
+								placeholder="Informe sua senha" />
+						</div>
+					</div>
+					<br><br>
+					<div class="col-6">
+						<a th:href="@{/esqueciSenha}">Esqueci a senha</a>
+					</div>
+					<div class="col-6">
+						<a th:href="@{/novoUsuario}">Cadastrar Usuário</a>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-12">
+						<div class="input-group">
+							<input type="submit" class="btn btn-primary col-sm-12" value="Acessar">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/cabecalho :: cabecalho">
+	<title>Recuperação de senha</title>
+</head>
+
+<body>
+	<div class="container">
+		<h2>Esqueceu sua Senha</h2>
+		<hr>
+		<form th:action="@{/recuperarSenha}" th:object="${usuario}" method="POST">
+			<div class="row">
+				<div class="col-6">
+					<p>Para recuperar sua senha, informe o seu e-mail de cadastro e será enviado um link para alterar a
+						senha.</p>
+					E-mail de cadastro:<input class="form-control mb-4 col-4" type="email" />
+				</div>
+			</div>
+			<button class="btn btn-info col-2" type="submit"> Enviar </button>
+			<a th:href="@{/}" class="btn btn-primary col-2"> Cancelar </a>
+		</form>
+	</div>
+</body>
+
+</html>
