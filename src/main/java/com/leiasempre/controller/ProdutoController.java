@@ -37,10 +37,18 @@ public class ProdutoController {
 	}
 
 	@GetMapping("/produto")
+	public String opcoesProduto(Model model) {
+		List<Produto> product = new ArrayList<Produto>();
+		productRepository.findAll().forEach(product::add);
+		model.addAttribute("listaDeProdutos", product);
+		return "/produto/opcoesProduto";
+	}
+	
+	@GetMapping("/listarProduto")
 	public String listarProduto(Model model) {
-		List<Produto> user = new ArrayList<Produto>();
-		productRepository.findAll().forEach(user::add);
-		model.addAttribute("listaDeProdutos", user);
+		List<Produto> product = new ArrayList<Produto>();
+		productRepository.findAll().forEach(product::add);
+		model.addAttribute("listaDeProdutos", product);
 		return "/produto/listaProduto";
 	}
 

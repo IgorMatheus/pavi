@@ -3,9 +3,12 @@
 
 <head th:replace="fragments/cabecalho :: cabecalho">
 	<title>Login de Usuário</title>
+	
 </head>
 
 <body>
+	<header th:insert="fragments/header :: header"></header>
+
 	<div class="container">
 		<br><br>
 		<div class="card" style="width: 70rem;">
@@ -15,7 +18,9 @@
 				</center>
 			</div>
 			<form th:action="@{/login}" method="post">
-				<div class="card-body justify-content-center">
+				<div class="card-body justify-content-center">Acesso ao Sistema
+
+
 					<div class="row">
 						<div class="col-12">
 							<div class="alert alert-error" th:if="${param.error}">
@@ -38,10 +43,10 @@
 						</div>
 					</div>
 					<br><br>
-					<div class="col-6">
+					<div class="col-5">
 						<a th:href="@{/esqueciSenha}">Esqueci a senha</a>
 					</div>
-					<div class="col-6">
+					<div class="col-5">
 						<a th:href="@{/novoUsuario}">Cadastrar Usuário</a>
 					</div>
 				</div>

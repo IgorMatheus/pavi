@@ -5,18 +5,21 @@
 </head>
 
 <body>
+	<header th:insert="fragments/header :: header"></header>
+
 	<div th:insert="fragments/menu :: menu"></div>
 	<div class="container">
-		<h1>Cadastro de Produtos</h1>
+		<h1 >Cadastro de Produtos</h1>
 		<form th:action="@{/salvarProduto}" th:object="${cadastroDeProduto}" method="POST">
 			Descrição: <input type="text" class="form-control mb-4 col-4" th:field="*{sumario}" />
 			Fornecedor: <select class="form-control mb-4 col-4" th:field="*{supplier}" multiple="multiple">
 				<option value="0">selecione o fornecedor</option>
 				<option th:each="fn : ${supplier}" th:value="${fn.id}" th:text="${fn.nome}"></option>
 			</select>
-			Quantidade: <input class="form-control mb-4 col-4" type="text" th:field="*{qntdPaginas}" />
+			Quantidade de Páginas: <input class="form-control mb-4 col-4" type="text" th:field="*{qntdPaginas}" />
 			Valor: <input class="form-control mb-4 col-4" type="text" th:field="*{preco}" />
 			<input class="btn btn-secondary btn-sm mb-3" type="submit" />
+			
 			<a th:href="@{/produto}" class="btn btn-primary btn-sm mb-3"> Cancelar </a>
 		</form>
 	</div>

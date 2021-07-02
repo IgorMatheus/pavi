@@ -93,7 +93,7 @@ public class SecurityController {
 		} else {
 			model.addAttribute("usuarios", user);
 		}
-		return "usuario";
+		return "/usuario/listaUsuario";
 	}
 
 }
