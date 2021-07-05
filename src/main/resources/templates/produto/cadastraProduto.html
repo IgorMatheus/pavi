@@ -9,18 +9,19 @@
 
 	<div th:insert="fragments/menu :: menu"></div>
 	<div class="container">
-		<h1 >Cadastro de Produtos</h1>
+		<h1>Cadastro de Produtos</h1>
 		<form th:action="@{/salvarProduto}" th:object="${cadastroDeProduto}" method="POST">
-			Descrição: <input type="text" class="form-control mb-4 col-4" th:field="*{sumario}" />
-			Fornecedor: <select class="form-control mb-4 col-4" th:field="*{supplier}" multiple="multiple">
+			Nome: <input type="text" class="form-control mb-4 col-4" th:field="*{nome}" />
+			Sumario: <input type="text" class="form-control mb-4 col-4" th:field="*{sumario}" />
+			<!--Fornecedor: <select class="form-control mb-4 col-4" th:field="*{supplier}" multiple="multiple">
 				<option value="0">selecione o fornecedor</option>
 				<option th:each="fn : ${supplier}" th:value="${fn.id}" th:text="${fn.nome}"></option>
-			</select>
+			</select>-->
 			Quantidade de Páginas: <input class="form-control mb-4 col-4" type="text" th:field="*{qntdPaginas}" />
+			Categoria: <input class="form-control mb-4 col-4" type="text" th:field="*{categoria}" />
 			Valor: <input class="form-control mb-4 col-4" type="text" th:field="*{preco}" />
-			<input class="btn btn-secondary btn-sm mb-3" type="submit" />
-			
-			<a th:href="@{/produto}" class="btn btn-primary btn-sm mb-3"> Cancelar </a>
+			<button class="btn btn-primary btn-sm mb-3" type="submit"> Salvar </button>
+			<a th:href="@{/listarProduto}" class="btn btn-primary btn-sm mb-3"> Cancelar </a>
 		</form>
 	</div>
 	<div th:insert="fragments/rodape :: rodape"></div>

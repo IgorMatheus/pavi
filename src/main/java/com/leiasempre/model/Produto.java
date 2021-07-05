@@ -36,6 +36,7 @@ public class Produto implements Serializable {
 	private String sumario;
 	private String qntdPaginas;
 	private String categoria;
+	
 
 	@NotNull(message = "Preço do produto não pode ser nulo")
 	private double preco;

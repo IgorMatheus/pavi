@@ -44,6 +44,15 @@ public class ProdutoController {
 		model.addAttribute("listaDeProdutos", product);
 		return "/produto/opcoesProduto";
 	}
+	// localhost:8080/produtos
+	@GetMapping("/produtos")
+	public ModelAndView produtos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("produto/storeProduto");
+		mv.addObject("store", productRepository.findAll());
+		return mv;
+	}
+
 
 	@GetMapping("/listarProduto")
 	public String listarProduto(Model model) {
@@ -75,7 +84,7 @@ public class ProdutoController {
 			redAtt.addFlashAttribute("Aviso", "Erro ao salvar");
 		}
 
-		return "redirect:/produto";
+		return "redirect:/listarProduto";
 	}
 
 	/*
@@ -105,6 +114,20 @@ public class ProdutoController {
 		return mv;
 	}
 
+	
+	@GetMapping("/comprarProduto/{id}")
+	public ModelAndView comprarProduto(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("produto/compraProduto");
+		Optional<Produto> product = productRepository.findById(id);
+		if (product.isPresent()) {
+			mv.addObject("produto", product);
+		}
+		return mv;
+	}
+	
+	
+	
 	@RequestMapping("/excluirProduto/{id}")
 	public String excluirProduto(@PathVariable("id") Long id, RedirectAttributes redAtt) {
 		Optional<Produto> product = productRepository.findById(id);
@@ -115,7 +138,7 @@ public class ProdutoController {
 			redAtt.addFlashAttribute("Aviso", "Erro ao excluir");
 		}
 
-		return "redirect:/produto";
+		return "redirect:/listarProduto";
 	}
 
 	private void updateProduto(Produto product, Produto obj) {

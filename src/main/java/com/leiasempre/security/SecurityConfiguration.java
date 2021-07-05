@@ -19,9 +19,9 @@ import com.leiasempre.service.AutenticacaoService;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	
 	@Autowired
 	private AutenticacaoService autenticacaoService;
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -35,18 +35,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		/*builder.inMemoryAuthentication().withUser("user01").password(passwordEncoder().encode("12345")).roles("ADMIN")
 				.and().withUser("user02").password(passwordEncoder().encode("12345")).roles("USER").and()
 				.withUser("user03").password(passwordEncoder().encode("12345")).roles("ADMIN", "USER");*/
-		
+	builder.inMemoryAuthentication().withUser("adm").password(passwordEncoder().encode("123")).roles("ADMIN");
 	builder.authenticationProvider(AuthenticationProvider());
 	
 	}
-				
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// http.authorizeRequests().antMatchers("/").permitAll();
-		
-		// A configuração "permitAll" deve vim antes de utilizar os parâmetros de Autenticação
-		http.authorizeRequests().antMatchers("/h2/**").permitAll(); 
+
+		// A configuração "permitAll" deve vim antes de utilizar os parâmetros de
+		// Autenticação
+		http.authorizeRequests().antMatchers("/h2/**").permitAll();
 		http.authorizeRequests().antMatchers("/novoUsuario").permitAll();
 		http.authorizeRequests().antMatchers("/salvarUsuario").permitAll();
 		http.authorizeRequests().antMatchers("/esqueciSenha").permitAll();
@@ -64,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/static/**"); // Igonorar tudo dentro da pasta "static".
 	}
-	
+
 	@Bean
 	public DaoAuthenticationProvider AuthenticationProvider() {
 		DaoAuthenticationProvider autenticador = new DaoAuthenticationProvider();
