@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.leiasempre.model.Fornecedor;
 import com.leiasempre.model.Produto;
+import com.leiasempre.model.Usuario;
 import com.leiasempre.repository.FornecedorRepository;
 import com.leiasempre.repository.ProdutoRepository;
 
@@ -43,7 +44,7 @@ public class ProdutoController {
 		model.addAttribute("listaDeProdutos", product);
 		return "/produto/opcoesProduto";
 	}
-	
+
 	@GetMapping("/listarProduto")
 	public String listarProduto(Model model) {
 		List<Produto> product = new ArrayList<Produto>();
@@ -56,15 +57,16 @@ public class ProdutoController {
 	public String cadastrarProduto(Model model) {
 		List<Fornecedor> supplier = new ArrayList<Fornecedor>();
 		supplierRepository.findAll().forEach(supplier::add);
-	
+
 		Produto product = new Produto();
 		model.addAttribute("cadastroDeProduto", product);
 		model.addAttribute("fornecedores", supplier);
-		
+
 		return "/produto/cadastraProduto";
 	}
 
-	@PostMapping("/salvarProdudo")
+	// EXCLUINDO PRODUTO
+	@PostMapping("/salvarProduto")
 	public String salvarProduto(@Valid @ModelAttribute("produto") Produto product, RedirectAttributes redAtt) {
 		try {
 			productRepository.save(product);
@@ -76,13 +78,30 @@ public class ProdutoController {
 		return "redirect:/produto";
 	}
 
-	@RequestMapping("/editarProduto/{id}")
+	/*
+	 * @RequestMapping("/editarProduto/{id}") public ModelAndView
+	 * editarProduto(@PathVariable("id") Long id) { ModelAndView mv = new
+	 * ModelAndView("/editarProduto"); Optional<Produto> product =
+	 * productRepository.findById(id); if (product.isPresent()) {
+	 * mv.addObject("produto", product); } return mv; }
+	 */
+
+	@GetMapping("/editarProduto/{id}")
 	public ModelAndView editarProduto(@PathVariable("id") Long id) {
-		ModelAndView mv = new ModelAndView("/editarProduto");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("produto/editarProduto");
 		Optional<Produto> product = productRepository.findById(id);
 		if (product.isPresent()) {
 			mv.addObject("produto", product);
 		}
+		return mv;
+	}
+			
+	@PostMapping("/editarProduto")
+	public ModelAndView editarProduto(Produto produto) {
+		ModelAndView mv = new ModelAndView();
+		productRepository.save(produto);
+		mv.setViewName("redirect:/listarProduto");
 		return mv;
 	}
 
@@ -99,4 +118,12 @@ public class ProdutoController {
 		return "redirect:/produto";
 	}
 
+	private void updateProduto(Produto product, Produto obj) {
+		product.setNome(obj.getNome());
+		product.setSupplier(obj.getSupplier());
+		product.setQntdPaginas(obj.getQntdPaginas());
+		product.setPreco(obj.getPreco());
+	
+	}
+	
 }
