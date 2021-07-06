@@ -141,10 +141,11 @@ public class ProdutoController {
 		return "redirect:/listarProduto";
 	}
 
-	// Finzalizando pagamento
+	// Finalizando Pagamento
 	@PostMapping("/finalizarCompra")
 	public ModelAndView finalizarCompra(Produto produto) {
 		ModelAndView mv = new ModelAndView();
+		produto = productRepository.getById(produto.getId());
 		mv.setViewName("produto/finalizarCompra");
 		mv.addObject("produto", produto);
 		

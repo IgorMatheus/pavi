@@ -62,14 +62,12 @@ public class Testeconfig implements CommandLineRunner {
 		Usuario user02 = new Usuario(null, "nome02", "login02", "nome02@email.com", "991234567", "R. Endereço", "senha");
 		userRepository.saveAll(Arrays.asList(user01, user02));
 		
-		Produto product01 = new Produto(null, "Livro01", "Suamario Livro01", "150", "Categoria Livro01", 20);
-		Produto product02 = new Produto(null, "Livro02", "Suamario Livro02", "200", "Categoria Livro02", 32);
-		Produto product03 = new Produto(null, "Livro01", "Suamario Livro01", "150", "Categoria Livro01", 20);
-		Produto product04 = new Produto(null, "Livro02", "Suamario Livro02", "200", "Categoria Livro02", 32);
-		Produto product05 = new Produto(null, "Livro01", "Suamario Livro01", "150", "Categoria Livro01", 20);
-		Produto product06 = new Produto(null ,"Livro3", "Sumario livro 01",  "300",  "Categoria","./assets/img/products-01.jpg",  50);
+		Produto product01 = new Produto(null, "Arquitetura Limpa", "As regras universais de arquitetura de software aumentam dramaticamente a produtividade dos desenvolvedores ao longo da vida dos sistemas de software. ", "432", "Computação", "https://images-na.ssl-images-amazon.com/images/I/41T8NdKFqEL._SX352_BO1,204,203,200_.jpg", 59.9);
+		Produto product02 = new Produto(null, "Pai Rico, Pai Pobre", "Celebrando 20 anos como o livro n° 1 em finanças pessoais.A escola prepara as crianças para o mundo real? Essa é a primeira pergunta com a qual o leitor se depara neste livro.", "336", "Finanças", "https://images-na.ssl-images-amazon.com/images/I/51VKbEh8uSL._SX356_BO1,204,203,200_.jpg", 44.89);
+		Produto product03 = new Produto(null, "A rainha vermelha", "O mundo de Mare Barrow é dividido pelo sangue: vermelho ou prateado. Mare e sua família são vermelhos: plebeus, humildes, destinados a servir uma elite prateada cujos poderes sobrenaturais os tornam quase deuses. ", "424", "Ação e Aventura", "https://images-na.ssl-images-amazon.com/images/I/41rK-7HUAML._SX346_BO1,204,203,200_.jpg", 26.79);
+		Produto product04 = new Produto(null, "O cavaleiro da morte - Crônicas saxônicas - vol. 2", "Suamario Livro02", "338", "Categoria Livro02","https://m.media-amazon.com/images/I/51QxVdN3mfL.jpg", 35.9);
 		
-		productRepository.saveAll(Arrays.asList(product01,product02,product03,product04,product05,product06));
+		productRepository.saveAll(Arrays.asList(product01,product02,product03,product04));
 
 
 	}
