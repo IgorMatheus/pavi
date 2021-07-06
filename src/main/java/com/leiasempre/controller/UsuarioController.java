@@ -69,12 +69,24 @@ public class UsuarioController {
 	}
 	
 	
-	@RequestMapping("/editarUsuario/{id}")
-	public String editarUsuario() {
-		
-		return null;
+	@GetMapping("/editarUsuario/{id}")
+	public ModelAndView editarUsuario(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("usuario/editarUsuario");
+		Optional<Usuario> user = userRepository.findById(id);
+		if (user.isPresent()) {
+			mv.addObject("usuario", user);
+		}
+		return mv;
 	}
 	
+	@PostMapping("/editarUsuario")
+	public ModelAndView editarProduto(Usuario usuario) {
+		ModelAndView mv = new ModelAndView();
+		userRepository.save(usuario);
+		mv.setViewName("redirect:/listaUsuario");
+		return mv;
+	}
 	
 	@RequestMapping("/excluirUsuario/{id}")
 	public String excluirUsuario() {

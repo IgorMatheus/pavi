@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/cabecalho :: cabecalho">
+</head>
+
+<body>
+	<header th:insert="fragments/header :: header"></header>
+
+	<div th:insert="fragments/menu :: menu"></div>
+	<div class="container">
+		<h1>Editar Usuario</h1>
+		<form th:action="@{/editarUsuario}" th:object="${usuario}" method="POST">
+			<input type="hidden" class="form-control mb-4 col-4" th:field="*{id}" />
+			Nome: <input type="text" class="form-control mb-4 col-4" th:field="*{nome}" />
+			Login: <input type="text" class="form-control mb-4 col-4" th:field="*{login}" />
+			E-mail: <input class="form-control mb-4 col-4" type="text" th:field="*{email}" />
+			Celular: <input class="form-control mb-4 col-4" type="text" th:field="*{celular}" />
+			Endereço: <input class="form-control mb-4 col-4" type="text" th:field="*{endereco}" />
+			Senha: <input class="form-control mb-4 col-4" type="text" th:field="*{senha}" />
+
+			<button class="btn btn-primary btn-sm mb-3" type="submit"> Salvar </button>
+			<a th:href="@{/listaUsuario}" class="btn btn-primary btn-sm mb-3"> Cancelar </a>
+		</form>
+	</div>
+	<div th:insert="fragments/rodape :: rodape"></div>
+</body>
+
+</html>
