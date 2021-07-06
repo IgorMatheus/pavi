@@ -3,6 +3,9 @@ package com.leiasempre.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -55,9 +58,18 @@ public class Testeconfig implements CommandLineRunner {
 		PedidoProduto pp1 = new PedidoProduto(pedido, product01, 2, product01.getPreco());
 		pedidoProdutoRepository.save(pp1);*/
 		
+		Usuario user01 = new Usuario(null, "nome01", "login01", "nome01@email.com", "991231234", "R.endereço2", "senha");
+		Usuario user02 = new Usuario(null, "nome02", "login02", "nome02@email.com", "991234567", "R. Endereço", "senha");
+		userRepository.saveAll(Arrays.asList(user01, user02));
+		
 		Produto product01 = new Produto(null, "Livro01", "Suamario Livro01", "150", "Categoria Livro01", 20);
 		Produto product02 = new Produto(null, "Livro02", "Suamario Livro02", "200", "Categoria Livro02", 32);
-		productRepository.saveAll(Arrays.asList(product01,product02));
+		Produto product03 = new Produto(null, "Livro01", "Suamario Livro01", "150", "Categoria Livro01", 20);
+		Produto product04 = new Produto(null, "Livro02", "Suamario Livro02", "200", "Categoria Livro02", 32);
+		Produto product05 = new Produto(null, "Livro01", "Suamario Livro01", "150", "Categoria Livro01", 20);
+		Produto product06 = new Produto(null ,"Livro3", "Sumario livro 01",  "300",  "Categoria","./assets/img/products-01.jpg",  50);
+		
+		productRepository.saveAll(Arrays.asList(product01,product02,product03,product04,product05,product06));
 
 
 	}

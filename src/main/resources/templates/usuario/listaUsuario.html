@@ -9,9 +9,9 @@
 
 	<div th:insert="fragments/menu :: menu"></div>
 	<div class="container">
-		<h1>Lista de Usuários</h1>
-		<a th:href="@{/cadastrarProduto}" class="btn btn-primary btn-sm
-mb-3"> Novo Produto </a>
+		<h1 style="color: white;">Lista de Usuários</h1>
+		<a th:href="@{/novoUsuario}" class="btn btn-primary btn-sm
+mb-3"> Novo Usuário </a>
 		<table border="1" class="table table-striped table-responsive-md">
 			<thead>
 				<tr>
@@ -25,7 +25,7 @@ mb-3"> Novo Produto </a>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="usuario : ${listaDeUsuarios}">
+				<tr th:each="usuario : ${usuarios}">
 					<td th:text="${usuario.id}"></td>
 					<td th:text="${usuario.nome}"></td>
 					<td th:text="${usuario.login}"></td>

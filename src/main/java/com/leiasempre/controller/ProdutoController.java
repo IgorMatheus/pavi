@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.leiasempre.model.Fornecedor;
@@ -36,7 +37,8 @@ public class ProdutoController {
 	public String homePage() {
 		return "index";
 	}
-
+	
+	//NÃO UTILIZADA NO MOMENTO
 	@GetMapping("/produto")
 	public String opcoesProduto(Model model) {
 		List<Produto> product = new ArrayList<Produto>();
@@ -44,12 +46,12 @@ public class ProdutoController {
 		model.addAttribute("listaDeProdutos", product);
 		return "/produto/opcoesProduto";
 	}
-	// localhost:8080/produtos
+	
 	@GetMapping("/produtos")
 	public ModelAndView produtos() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("produto/storeProduto");
-		mv.addObject("store", productRepository.findAll());
+		mv.addObject("opcoesDeProdutos", productRepository.findAll());
 		return mv;
 	}
 
@@ -116,16 +118,14 @@ public class ProdutoController {
 
 	
 	@GetMapping("/comprarProduto/{id}")
-	public ModelAndView comprarProduto(@PathVariable("id") Long id) {
+	public ModelAndView comprarProduto(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("produto/compraProduto");
-		Optional<Produto> product = productRepository.findById(id);
-		if (product.isPresent()) {
-			mv.addObject("produto", product);
-		}
+		
+		Produto produto = productRepository.getById(id);
+		mv.addObject("produto", produto);
 		return mv;
 	}
-	
 	
 	
 	@RequestMapping("/excluirProduto/{id}")
@@ -141,12 +141,14 @@ public class ProdutoController {
 		return "redirect:/listarProduto";
 	}
 
-	private void updateProduto(Produto product, Produto obj) {
-		product.setNome(obj.getNome());
-		product.setSupplier(obj.getSupplier());
-		product.setQntdPaginas(obj.getQntdPaginas());
-		product.setPreco(obj.getPreco());
-	
+	// Finzalizando pagamento
+	@PostMapping("/finalizarCompra")
+	public ModelAndView finalizarCompra(Produto produto) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("produto/finalizarCompra");
+		mv.addObject("produto", produto);
+		
+		return mv;
 	}
 	
 }

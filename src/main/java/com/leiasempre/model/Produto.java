@@ -36,7 +36,7 @@ public class Produto implements Serializable {
 	private String sumario;
 	private String qntdPaginas;
 	private String categoria;
-	
+	private String imgURL;
 
 	@NotNull(message = "Preço do produto não pode ser nulo")
 	private double preco;
@@ -60,6 +60,29 @@ public class Produto implements Serializable {
 		this.qntdPaginas = qntdPaginas;
 		this.categoria = categoria;
 		this.preco = preco;
+	}
+	
+	
+	public Produto(Long id, @Size(max = 100) String nome, String sumario, String qntdPaginas, String categoria,
+			String imgURL, @NotNull(message = "Preço do produto não pode ser nulo") double preco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.sumario = sumario;
+		this.qntdPaginas = qntdPaginas;
+		this.categoria = categoria;
+		this.imgURL = imgURL;
+		this.preco = preco;
+	}
+	
+	
+
+	public String getImgURL() {
+		return imgURL;
+	}
+
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
 	}
 
 	public Long getId() {
